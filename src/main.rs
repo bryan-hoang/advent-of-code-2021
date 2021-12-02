@@ -6,7 +6,7 @@ fn main() {
 }
 
 fn run_all() {
-    for day in 1u8..=1 {
+    for day in 1u8..=25 {
         run_day(day)
     }
 }
@@ -16,8 +16,8 @@ fn run_day(day: u8) {
         Ok(sln) => println!(
             "Day {:2} | Part 1: {:15} | Part 2: {:15} | Time: {}",
             day,
-            sln.part1,
-            sln.part2,
+            sln.part_1,
+            sln.part_2,
             format_time(sln.nanos)
         ),
         Err(err) => println!("Day {:2} | {}", day, err),

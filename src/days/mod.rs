@@ -1,18 +1,20 @@
 use std::time::Instant;
 
 mod day_01;
+mod day_02;
+mod day_03;
 
 pub struct Solution {
-    pub part1: String,
-    pub part2: String,
+    pub part_1: String,
+    pub part_2: String,
     pub nanos: u128,
 }
 
 impl Solution {
-    fn new(part1: String, part2: String, nanos: u128) -> Solution {
+    fn new(part_1: String, part_2: String, nanos: u128) -> Solution {
         Self {
-            part1,
-            part2,
+            part_1,
+            part_2,
             nanos,
         }
     }
@@ -21,15 +23,16 @@ impl Solution {
 pub fn run_day(day: u8) -> Result<Solution, String> {
     return match day {
         1 => run_both(|| day_01::both()),
+        2 => run_parts(|| day_02::part_1(), || day_02::part_2()),
         _ => Err(String::from("No solution")),
     };
 }
 
 fn run_parts<A: ToString, B: ToString>(
-    part1: impl Fn() -> A,
-    part2: impl Fn() -> B,
+    part_1: impl Fn() -> A,
+    part_2: impl Fn() -> B,
 ) -> Result<Solution, String> {
-    run_both(|| (part1(), part2()))
+    run_both(|| (part_1(), part_2()))
 }
 
 fn run_both<A: ToString, B: ToString>(both_parts: impl Fn() -> (A, B)) -> Result<Solution, String> {
@@ -58,7 +61,7 @@ mod tests {
 
     fn test_day(day: u8, first: &str, second: &str) {
         let sln = crate::days::run_day(day).unwrap();
-        assert_eq!(sln.part1, first);
-        assert_eq!(sln.part2, second);
+        assert_eq!(sln.part_1, first);
+        assert_eq!(sln.part_2, second);
     }
 }
